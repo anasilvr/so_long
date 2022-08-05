@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/04 13:38:38 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:13:33 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ You should.\n"
  right permissions.\n"
 # define ERR_CHAR "Error: Undefined (invalid) character on map.\n"
 # define ERR_SIZE "Error: Map is not a rectangle. \n"
-# define ERR_INTEGRITY "Error: Map must contain: at least 1x(C)ollectible, \
-1x(E)xit, 1x(P)layer starting position, and be surrounded by walls.\n"
+# define ERR_INTEGRITY "Error: Map must contain: at least 1 (C)ollectible, \
+1 (E)xit, 1 (P)layer starting position.\n"
 
 typedef struct s_img {
 	void	*img;
@@ -66,8 +66,8 @@ typedef struct s_coord {
 /* Player sides to be used if I add moving/timed animations */
 /* Is there a better way to work on anymations via mlx? */
 typedef struct s_player {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	t_img	player;
 	// t_img	player_front1;
 	// t_img	player_front2;
@@ -112,15 +112,15 @@ void	nullify_structs(t_game *game);
 
 void	validate_file(int argc, char *mapfile, t_game *game);
 int		parsing_map(char *mapfile, t_game *game);
-int		count_lines(char *mapfile);
-char	**map_to_table(char *mapfile);
+int		count_lines(char *mapfile, t_game *game);
+char	**map_to_table(char *mapfile, t_game *game);
 
-int		validate_mapsize(char **mapdata, int height);
 void	check_mapsize(t_game *game);
-void	check_mapintegrity(char **mapdata);
-void	validate_chars(t_game *game, char c, int x, int y);
+void	check_mapsize(t_game *game);
+void	check_mapintegrity(t_game *game);
+void	validate_chars(t_game *game, char c);
 
-void	errmsg(char *msg);
+void	errmsg(char *msg, int tofree, t_game *game);
 void	free_map(char **map);
 
 #endif
