@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:13:33 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:50:29 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <fcntl.h> //open
 # include <stdio.h> // perror
 # include <string.h> // strerror
-//# include "../minilibx/mlx.h"
-//# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
+# include "../libft/libft.h"
 # include "../libft/GNL/get_next_line.h"
 
 # define ERR_MLX 1
@@ -58,10 +58,10 @@ typedef struct s_sprite {
 	t_img	success;
 }	t_sprite;
 
-typedef struct s_coord {
-	int	x;
-	int	y;
-}	t_coord;
+//typedef struct s_coord {
+//	int	x;
+//	int	y;
+//}	t_coord;
 
 /* Player sides to be used if I add moving/timed animations */
 /* Is there a better way to work on anymations via mlx? */
@@ -69,27 +69,27 @@ typedef struct s_player {
 	int		x;
 	int		y;
 	t_img	player;
-	// t_img	player_front1;
+	t_img	player_front1;
 	// t_img	player_front2;
 	// t_img	player_front3;
 	// t_img	player_front4;
 	// t_img	player_front5;
-	// t_img	player_back1;
+	t_img	player_back1;
 	// t_img	player_back2;
 	// t_img	player_back3;
 	// t_img	player_back4;
 	// t_img	player_back5;
-	// t_img	player_right1;
+	t_img	player_right1;
 	// t_img	player_right3;
 	// t_img	player_right3;
 	// t_img	player_right4;
 	// t_img	player_right5;
-	// t_img	player_left1;
+	t_img	player_left1;
 	// t_img	player_left2;
 	// t_img	player_left3;
 	// t_img	player_left4;
 	// t_img	player_left5;
-	// t_img	player_collect;
+	t_img	player_collect;
 }	t_player;
 
 typedef struct s_game {
@@ -98,9 +98,9 @@ typedef struct s_game {
 	int			f_exit;
 	int			f_player;
 	t_player	*player;
-	t_coord		*wall;
-	t_coord		*collect;
-	t_coord		*exit;
+//	t_coord		*wall;
+//	t_coord		*collect;
+//	t_coord		*exit;
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
@@ -108,19 +108,22 @@ typedef struct s_game {
 	int			height;
 }	t_game;
 
+/* UTILS */
+void	errmsg(char *msg, int tofree, t_game *game);
 void	nullify_structs(t_game *game);
-
-void	validate_file(int argc, char *mapfile, t_game *game);
-int		parsing_map(char *mapfile, t_game *game);
-int		count_lines(char *mapfile, t_game *game);
 char	**map_to_table(char *mapfile, t_game *game);
+int		count_lines(char *mapfile, t_game *game);
 
-void	check_mapsize(t_game *game);
+/* MAP VALIDATION */
+void	validate_file(int argc, char *mapfile, t_game *game);
+void	parsing_map(char *mapfile, t_game *game);
 void	check_mapsize(t_game *game);
 void	check_mapintegrity(t_game *game);
 void	validate_chars(t_game *game, char c);
 
-void	errmsg(char *msg, int tofree, t_game *game);
-void	free_map(char **map);
+/* RENDERING */
+
+
+/* MLX CONTROL */
 
 #endif

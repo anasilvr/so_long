@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:39:09 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:12:35 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:48:54 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ void	validate_file(int argc, char *mapfile, t_game *game)
 	close(fd);
 }
 
-int	parsing_map(char *mapfile, t_game *game)
+void	parsing_map(char *mapfile, t_game *game)
 {
 	game->map = map_to_table(mapfile, game);
 	check_mapsize(game);
 	check_mapintegrity(game);
-	return (0);
 }
 
 void	check_mapsize(t_game *game)

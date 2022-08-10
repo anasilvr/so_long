@@ -6,11 +6,19 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:00:19 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:11:38 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:47:46 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	errmsg(char *msg, int tofree, t_game *game)
+{
+	if (tofree == 1)
+		free_table(game->map);
+	write(2, msg, ft_strlen(msg));
+	exit(EXIT_FAILURE);
+}
 
 void	nullify_structs(t_game *game)
 {
@@ -19,22 +27,11 @@ void	nullify_structs(t_game *game)
 	game->f_exit = 0;
 	game->f_player = 0;
 	game->player = NULL;
-	game->wall = NULL;
-	game->collect = NULL;
-	game->exit = NULL;
 	game->mlx = NULL;
 	game->mlx_win = NULL;
 	game->map = NULL;
 	game->height = 0;
 	game->width = 0;
-}
-
-void	errmsg(char *msg, int tofree, t_game *game)
-{
-	if (tofree == 1)
-		free_table(game->map);
-	write(2, msg, ft_strlen(msg));
-	exit(EXIT_FAILURE);
 }
 
 char	**map_to_table(char *mapfile, t_game *game)
