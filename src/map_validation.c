@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:39:09 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:48:54 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:48:02 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	check_mapintegrity(t_game *game)
 		errmsg(ERR_INTEGRITY, 1, game);
 }
 
-//Should I check/stop the program if I had multiple exits?
 void	validate_chars(t_game *game, char c)
 {
 	if (c != '1' && c != 'C' && c != 'E' && c != 'P')

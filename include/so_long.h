@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:50:29 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:52:33 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h> //open
 # include <stdio.h> // perror
 # include <string.h> // strerror
-# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include "../libft/libft.h"
 # include "../libft/GNL/get_next_line.h"
 
