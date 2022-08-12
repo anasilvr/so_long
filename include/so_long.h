@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/10 15:52:33 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:51:59 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ typedef struct s_img {
 typedef struct s_sprite {
 	t_img	floor;
 	t_img	wall;
-	t_img	exit;
+	t_img	closed_exit;
+	t_img	open_exit;
 	t_img	collectible;
+	t_img	player;
 	// t_img	collectible1;
 	// t_img	collectible2;
 	// t_img	collectible3;
@@ -93,6 +95,7 @@ typedef struct s_player {
 }	t_player;
 
 typedef struct s_game {
+	char		**map;
 	int			moves;
 	int			f_collectible;
 	int			f_exit;
@@ -103,9 +106,10 @@ typedef struct s_game {
 //	t_coord		*exit;
 	void		*mlx;
 	void		*mlx_win;
-	char		**map;
 	int			width;
 	int			height;
+	int			bits;
+	t_sprite	xpm;
 }	t_game;
 
 /* UTILS */
@@ -122,8 +126,15 @@ void	check_mapintegrity(t_game *game);
 void	validate_chars(t_game *game, char c);
 
 /* RENDERING */
-
+void	render_game(t_game *game);
+void	get_mapimg(t_game *game);
+void	render_map(t_game game);
+void	img_to_window(t_game *game, int x, int y);
 
 /* MLX CONTROL */
 
+int		so_long(t_game *game);
+int		keybinding(int key, t_game *game);
+int		quit_game(t_game *game);
+void	destroy_graphics(t_game *game);
 #endif

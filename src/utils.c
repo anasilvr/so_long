@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:00:19 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/05 12:47:46 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/12 13:47:11 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	nullify_structs(t_game *game)
 	game->map = NULL;
 	game->height = 0;
 	game->width = 0;
+	game->bits = 32;
 }
 
 char	**map_to_table(char *mapfile, t_game *game)

@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 15:57:16 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/12 12:53:04 by anarodri         ###   ########.fr       */
+/*   Created: 2022/08/10 15:57:29 by anarodri          #+#    #+#             */
+/*   Updated: 2022/08/12 12:58:02 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	main(int argc, char **argv)
+int		so_long(t_game *game)
 {
-	t_game	*game;
-
-	game = malloc (sizeof(t_game));
-	nullify_structs(game);
-	validate_file(argc, argv[1], game);
-	printf("[FILE VALIDATED]\n");
-	parsing_map(argv[1], game);
-
-	printf("[MAP VALIDATED]\n");
-	if (so_long(game) == 1)
-		errmsg("Error: MLX fail.", 1, game);
-	if (game->map)
-		free_table(game->map);
-	free(game);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return(ERR_MLX);
+	game->mlx_win = mlx_new_window(game->mlx, ((game->width - 1) * 32), (game->height * 32), "so_long");
+	if (!game->mlx_win)
+		return (ERR_MLX);
+	render_game(game);
+	mlx_hook(game->mlx_win, 2, 0, &keybinding, game);
+	mlx_hook(game->mlx_win, 17, 0, &quit_game, game);
+	mlx_loop(game->mlx);
 	return (0);
 }
