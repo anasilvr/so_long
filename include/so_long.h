@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 14:10:36 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:49:34 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_game {
 	int			f_collectible;
 	int			f_exit;
 	int			f_player;
-	t_player	*player;
+	t_player	player;
 //	t_coord		*wall;
 //	t_coord		*collect;
 //	t_coord		*exit;
@@ -145,10 +145,14 @@ void	render_walls(t_game *game, int x, int y);
 void	render_obstacles(t_game *game, int x, int y);
 void	render_objects(t_game *game, int x, int y);
 
-/* MLX CONTROL */
+/* GAME START AND CONTROL */
 
 int		so_long(t_game *game);
 int		keybinding(int key, t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 int		quit_game(t_game *game);
 void	destroy_graphics(t_game *game);
 #endif

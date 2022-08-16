@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:43:06 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 14:11:20 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:07:28 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ void	render_objects(t_game *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->mlx_win, \
 			game->xpm.c_exit.img, (x * 32), (y * 32));
 	if (game->map[y][x] == 'P')
+	{
 		mlx_put_image_to_window(game->mlx, game->mlx_win, \
 			game->xpm.mom.img, (x * 32), (y * 32));
+		game->player.x = x;
+		game->player.y = y;
+	}
 }
 

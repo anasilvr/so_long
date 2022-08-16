@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 13:35:25 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 14:23:41 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:37:08 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	load_imgs2(t_game *game)
 		, &game->xpm.baby.width, &game->xpm.baby.height);
 	game->xpm.mom.img = mlx_xpm_file_to_image(game->mlx, "./sprites/front1.xpm"\
 		, &game->xpm.mom.width, &game->xpm.mom.height);
-//SCALE CAUSING SEGFAULT
-	game->xpm.baby.img = image_scale(&game->xpm.baby, 1, game->mlx);
+//SCALE CAUSING SEGFAULT -> mesmo setando addr?
+//	game->xpm.baby.img = image_scale(&game->xpm.baby, 1, game->mlx);
 
 }
 

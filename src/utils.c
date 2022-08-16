@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:00:19 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/12 13:47:11 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:04:29 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	nullify_structs(t_game *game)
 	game->f_collectible = 0;
 	game->f_exit = 0;
 	game->f_player = 0;
-	game->player = NULL;
 	game->mlx = NULL;
 	game->mlx_win = NULL;
 	game->map = NULL;

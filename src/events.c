@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:26:24 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 13:45:18 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:46:00 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 int	keybinding(int key, t_game *game)
 {
-	if (key == 53)
+	if (key == 13)
+		move_up(game);
+	else if (key == 1)
+		move_down(game);
+	else if (key == 2)
+		move_right(game);
+	else if (key == 0)
+		move_left(game);
+	else if (key == 53)
 		quit_game(game);
 	return (0);
 }
