@@ -6,84 +6,92 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:43:06 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/12 13:50:20 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:11:20 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	render_game(t_game *game)
+void	rendering(t_game *game)
 {
-	int a;
-	a = -1;
-
-	while (game->map[++a])
-	{
-		printf("%s", game->map[a]);
-	}
-	printf("\n");
-	get_mapimg(game);
-	render_map(*game);
-//	init_objects(game, mlx);
+	load_imgs1(game);
+	load_imgs2(game);
+	render_map(game);
 }
 
-void	get_mapimg(t_game *game)
+void	render_map(t_game *game)
 {
-	game->xpm.floor.img = mlx_xpm_file_to_image(game->map, "./sprites/mid1.xpm", &game->xpm.floor.width, &game->xpm.floor.height);
-	game->xpm.wall.img = mlx_xpm_file_to_image(game->map, "./sprites/wall.xpm", &game->xpm.wall.width, &game->xpm.wall.height);
-	game->xpm.closed_exit.img = mlx_xpm_file_to_image(game->map, "./sprites/E/exit.xpm", &game->xpm.closed_exit.width, &game->xpm.closed_exit.height);
-	game->xpm.collectible.img = mlx_xpm_file_to_image(game->map, "./sprites/C/baby1.xpm", &game->xpm.collectible.width, &game->xpm.collectible.height);
-	game->xpm.player.img = mlx_xpm_file_to_image(game->map, "./sprites/P/front1.xpm", &game->xpm.player.width, &game->xpm.player.height);
-}
-
-void	render_map(t_game game)
-{
-	int a;
-	a = -1;
-
-	while (game.map[++a])
-	{
-		printf("%s", game.map[a]);
-	}
-
 	int	x;
 	int	y;
 
-	y = -1;
-	while (++y < game.height)
-	{
-		x = -1;
-		while (++x < game.width - 1)
-			mlx_put_image_to_window(game.mlx, game.mlx_win, game.xpm.floor.img, (x * game.bits), (y * game.bits));
-	}
 	y = 0;
-	while (y < game.height)
+	while (y < game->height)
 	{
 		x = 0;
-		while (x < game.width - 1)
+		while (x < game->width - 1)
 		{
-			if (game.map[y][x] == '1')
-				mlx_put_image_to_window(game.mlx, game.mlx_win, game.xpm.wall.img, (x * 32), (y * 32));
-			if (game.map[y][x] == 'C')
-				mlx_put_image_to_window(game.mlx, game.mlx_win, game.xpm.collectible.img, (x * 32), (y * 32));
-			if (game.map[y][x] == 'E')
-				mlx_put_image_to_window(game.mlx, game.mlx_win, game.xpm.closed_exit.img, (x * 32), (y * 32));
-			if (game.map[y][x] == 'P')
-				mlx_put_image_to_window(game.mlx, game.mlx_win, game.xpm.player.img, (x * 32), (y * 32));
+			mlx_put_image_to_window(game->mlx, game->mlx_win, \
+				game->xpm.floor.img, (x * 32), (y * 32));
+			if (game->map[y][x] == '1')
+			{
+				if ((x > 0 && x < game->width - 2) && \
+					(y > 0 && y < game->height - 2))
+					render_obstacles(game, x, y);
+				else
+					render_walls(game, x, y);
+			}
+			else
+				render_objects(game, x, y);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	img_to_window(t_game *game, int x, int y)
+void	render_walls(t_game *game, int x, int y)
 {
-	if (game->map[y][x] == '1')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->xpm.wall.img, (x * 32), (y * 32));
-	if (game->map[y][x] == 'C')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->xpm.collectible.img, (x * game->bits), (y * game->bits));
-	if (game->map[y][x] == 'E')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->xpm.closed_exit.img, (x * game->bits), (y * game->bits));
-	if (game->map[y][x] == 'P')
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->xpm.player.img, (x * game->bits), (y * game->bits));
+	if (x == 0 && y == 0)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.tl.img, (x * 32), (y * 32));
+	if ((x > 0 && x < game->width - 1) && y == 0)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.top.img, (x * 32), (y * 32));
+	if (x == game->width - 2 && y == 0)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.tr.img, (x * 32), (y * 32));
+	if (x == 0 && (y > 0 && y < game->height - 1))
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.left.img, (x * 32), (y * 32));
+	if (x == game->width - 2 && (y > 0 && y < game->height - 1))
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.right.img, (x * 32), (y * 32));
+	if (x == 0 && y == game->height - 1)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.bl.img, (x * 32), (y * 32));
+	if ((x > 0 && x < game->width - 1) && y == game->height - 1)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.bot.img, (x * 32), (y * 32));
+	if (x == game->width - 2 && y == game->height - 1)
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.br.img, (x * 32), (y * 32));
 }
+
+void	render_obstacles(t_game *game, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.obst.img, (x * 32), (y * 32));
+}
+
+void	render_objects(t_game *game, int x, int y)
+{
+	if (game->map[y][x] == 'C')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.baby.img, (x * 32), (y * 32));
+	if (game->map[y][x] == 'E')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.c_exit.img, (x * 32), (y * 32));
+	if (game->map[y][x] == 'P')
+		mlx_put_image_to_window(game->mlx, game->mlx_win, \
+			game->xpm.mom.img, (x * 32), (y * 32));
+}
+

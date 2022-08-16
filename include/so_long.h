@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/12 13:51:59 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:10:36 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,19 @@ typedef struct s_img {
 /* Collectible1-2-3 to be used if I add timed animations */
 typedef struct s_sprite {
 	t_img	floor;
-	t_img	wall;
-	t_img	closed_exit;
-	t_img	open_exit;
-	t_img	collectible;
-	t_img	player;
+	t_img	tl;
+	t_img	top;
+	t_img	tr;
+	t_img	left;
+	t_img	right;
+	t_img	bl;
+	t_img	bot;
+	t_img	br;
+	t_img	obst;
+	t_img	c_exit;
+	t_img	o_exit;
+	t_img	baby;
+	t_img	mom;
 	// t_img	collectible1;
 	// t_img	collectible2;
 	// t_img	collectible3;
@@ -126,10 +134,16 @@ void	check_mapintegrity(t_game *game);
 void	validate_chars(t_game *game, char c);
 
 /* RENDERING */
-void	render_game(t_game *game);
-void	get_mapimg(t_game *game);
-void	render_map(t_game game);
-void	img_to_window(t_game *game, int x, int y);
+void	rendering(t_game *game);
+void	load_imgs1(t_game *game);
+void	load_imgs2(t_game *game);
+void	own_pixel_put(t_img *tmp, int x, int y, unsigned int color);
+unsigned int	pick_color(t_img *img, int x, int y);
+void	*image_scale(t_img *img, float scale, void *mlx);
+void	render_map(t_game *game);
+void	render_walls(t_game *game, int x, int y);
+void	render_obstacles(t_game *game, int x, int y);
+void	render_objects(t_game *game, int x, int y);
 
 /* MLX CONTROL */
 

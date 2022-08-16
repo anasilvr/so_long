@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:26:24 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/10 16:40:28 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/16 13:45:18 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	keybinding(int key, t_game *game)
 
 int	quit_game(t_game *game)
 {
-	if(game->map)
+	if (game->map)
 		free_table(game->map);
-	if(game->mlx)
+	if (game->mlx)
 		destroy_graphics(game);
 	exit(0);
 }
