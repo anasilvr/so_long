@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:43:06 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 15:07:28 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:50:54 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	render_map(t_game *game)
 			if (game->map[y][x] == '1')
 			{
 				if ((x > 0 && x < game->width - 2) && \
-					(y > 0 && y < game->height - 2))
+					(y > 0 && y < game->height - 1))
 					render_obstacles(game, x, y);
 				else
 					render_walls(game, x, y);
@@ -88,14 +88,17 @@ void	render_objects(t_game *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->mlx_win, \
 			game->xpm.baby.img, (x * 32), (y * 32));
 	if (game->map[y][x] == 'E')
+	{
 		mlx_put_image_to_window(game->mlx, game->mlx_win, \
 			game->xpm.c_exit.img, (x * 32), (y * 32));
+		game->e_x = x;
+		game->e_y = y;
+	}
 	if (game->map[y][x] == 'P')
 	{
 		mlx_put_image_to_window(game->mlx, game->mlx_win, \
-			game->xpm.mom.img, (x * 32), (y * 32));
-		game->player.x = x;
-		game->player.y = y;
+			game->xpm.p_front.img, (x * 32), (y * 32));
+		game->p.x = x;
+		game->p.y = y;
 	}
 }
-

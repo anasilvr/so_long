@@ -6,18 +6,11 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 13:35:25 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 14:37:08 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:43:15 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	set_imgdata(void *mlx, char *path, t_img *img)
-{
-	img->img = mlx_xpm_file_to_image (mlx, path, &img->width, &img->height);
-	img->addr = mlx_get_data_addr (img->img, &img->bpp, &img->linelenght, \
-		&img->endian);
-}
 
 void	load_imgs1(t_game *game)
 {
@@ -47,54 +40,21 @@ void	load_imgs2(t_game *game)
 {
 	game->xpm.c_exit.img = mlx_xpm_file_to_image(game->mlx, "./sprites/exit.xpm"\
 		, &game->xpm.c_exit.width, &game->xpm.c_exit.height);
-	game->xpm.baby.img = mlx_xpm_file_to_image(game->mlx, "./sprites/baby1.xpm"\
-		, &game->xpm.baby.width, &game->xpm.baby.height);
-	game->xpm.mom.img = mlx_xpm_file_to_image(game->mlx, "./sprites/front1.xpm"\
-		, &game->xpm.mom.width, &game->xpm.mom.height);
-//SCALE CAUSING SEGFAULT -> mesmo setando addr?
-//	game->xpm.baby.img = image_scale(&game->xpm.baby, 1, game->mlx);
-
-}
-
-void	own_pixel_put(t_img *tmp, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	dst = tmp->addr + (y * tmp->linelenght + x * (tmp->bpp / 8));
-	*(unsigned int *) dst = color;
-}
-
-unsigned int	pick_color(t_img *img, int x, int y)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->linelenght + x * (img->bpp / 8));
-	return (*(unsigned int *) dst);
-}
-
-void	*image_scale(t_img *img, float scale, void *mlx)
-{
-	t_img			tmp;
-	int				x;
-	int				y;
-	unsigned int	color;
-
-	tmp.width = img->width * scale;
-	tmp.height = img->height * scale;
-	tmp.img = mlx_new_image(mlx, tmp.width, tmp.height);
-	tmp.addr = mlx_get_data_addr(tmp.img, &tmp.bpp, \
-		&tmp.linelenght, &tmp.endian);
-	y = 0;
-	while (y < img->height * scale)
-	{
-		x = 0;
-		while (x < (img->width * scale))
-		{
-			color = pick_color(img, (x / scale), (y / scale));
-			own_pixel_put(&tmp, x, y, color);
-			x++;
-		}
-		y++;
-	}
-	return (tmp.img);
+	game->xpm.o_exit.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/openexit1.xpm", &game->xpm.o_exit.width, \
+		&game->xpm.o_exit.height);
+	game->xpm.p_front.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/p_front.xpm", &game->xpm.p_front.width, \
+		&game->xpm.p_front.height);
+	game->xpm.p_back.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/p_back.xpm", &game->xpm.p_back.width, \
+		&game->xpm.p_back.height);
+	game->xpm.p_left.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/p_left.xpm", &game->xpm.p_left.width, \
+		&game->xpm.p_left.height);
+	game->xpm.p_right.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/p_right.xpm", &game->xpm.p_right.width, \
+		&game->xpm.p_right.height);
+	game->xpm.baby.img = mlx_xpm_file_to_image(game->mlx, \
+		"./sprites/baby1.xpm", &game->xpm.baby.width, &game->xpm.baby.height);
 }

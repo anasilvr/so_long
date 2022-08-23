@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 15:57:29 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:03 by anarodri         ###   ########.fr       */
+/*   Updated: 2022/08/23 10:43:00 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	so_long(t_game *game)
 	if (!game->mlx_win)
 		return (ERR_MLX);
 	rendering(game);
-	mlx_hook(game->mlx_win, 2, 1L << 0, keybinding, game);
-	mlx_hook(game->mlx_win, 17, 1L << 0, quit_game, game);
+	mlx_loop_hook(game->mlx, &gameplay, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

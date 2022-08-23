@@ -6,7 +6,7 @@
 #    By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 16:12:54 by anarodri          #+#    #+#              #
-#    Updated: 2022/08/16 14:59:30 by anarodri         ###   ########.fr        #
+#    Updated: 2022/08/18 16:15:29 by anarodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDE	=	-framework OpenGL -framework AppKit -lmlx ./libft/libft.a
 RM		=	@rm -rf
 # /usr/local/include/mlx.h
 
-SRC		=	$(addprefix src/, events.c main.c map_validation.c move.c load.c rendering.c so_long.c utils.c)
+SRC		=	$(addprefix src/, events.c main.c map_validation.c move.c load.c rendering.c so_long.c utils.c gameplay.c)
 
 OBJ		=	$(SRC:.c=.o)
 

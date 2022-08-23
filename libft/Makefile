@@ -6,7 +6,7 @@
 #    By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 12:27:09 by anarodri          #+#    #+#              #
-#    Updated: 2022/08/03 11:42:57 by anarodri         ###   ########.fr        #
+#    Updated: 2022/08/23 11:16:31 by anarodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRC		=	free_table.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_ispri
 
 GNL		 = ./GNL/get_next_line.c
 
-OBJ		=	$(SRC:.c=.o) $(GNL:.c=.o)
+PRINTF	=	./ft_printf/ft_printf.c ./ft_printf/utils.c
+
+OBJ		=	$(SRC:.c=.o) $(GNL:.c=.o) $(PRINTF:.c=.o)
 
 CC		=	gcc
 
