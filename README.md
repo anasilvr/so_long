@@ -12,3 +12,5 @@ Note: At the time this project was done, checking for a valid path was not requi
 | `make re` | removes all .o & .a files then remakes them |
 
 https://user-images.githubusercontent.com/91762843/208722216-6ac35132-edf4-4cb9-8751-70c6942d2fbb.mov
+
+<img align="right" width="150" alt="100/100" src="https://user-images.githubusercontent.com/91762843/208724626-bcf6e179-09ea-455a-9fed-8abe5b412fe1.png">
