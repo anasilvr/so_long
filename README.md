@@ -11,4 +11,4 @@ Note: At the time this project was done, checking for a valid path was not requi
 | `make fclean` | removes the .o & .a files used to create the library |
 | `make re` | removes all .o & .a files then remakes them |
 
-https://user-images.githubusercontent.com/91762843/208721980-9e588402-0a9c-47fe-b024-a2766184ee3d.mov
+https://user-images.githubusercontent.com/91762843/208722216-6ac35132-edf4-4cb9-8751-70c6942d2fbb.mov
