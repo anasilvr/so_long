@@ -1,5 +1,6 @@
 # so_long
 📄 [Subject PDF v. 2.2]()
+
 Note: At the time this project was done, checking for a valid path was not required as it is in the PDF (v. 2.2) uploaded for reference.
 
 ## Makefile 🔨
