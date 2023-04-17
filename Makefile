@@ -6,7 +6,7 @@
 #    By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 16:12:54 by anarodri          #+#    #+#              #
-#    Updated: 2022/08/18 16:15:29 by anarodri         ###   ########.fr        #
+#    Updated: 2023/04/17 15:05:45 by anarodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	so_long
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -g
 #INCLUDE	= ./libft/libft.a
-INCLUDE	=	-framework OpenGL -framework AppKit -lmlx ./libft/libft.a
+INCLUDE	=	-framework OpenGL -framework AppKit ./mlx/libmlx.a ./libft/libft.a
 RM		=	@rm -rf
 # /usr/local/include/mlx.h
 

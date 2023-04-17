@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:22:42 by anarodri          #+#    #+#             */
-/*   Updated: 2022/08/23 11:51:06 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:03:08 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/GNL/get_next_line.h"
 # include "../libft/ft_printf/ft_printf.h"
